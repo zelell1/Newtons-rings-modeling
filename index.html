@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Кольца Ньютона</title>
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <aside class="controls" aria-label="Параметры моделирования">
+        <div class="title-block">
+          <p class="eyebrow">Интерференция в тонкой воздушной пленке</p>
+          <h1>Кольца Ньютона</h1>
+        </div>
+
+        <form id="controlsForm" class="control-stack">
+          <fieldset class="segmented" aria-label="Тип наблюдения">
+            <legend>Наблюдение</legend>
+            <label>
+              <input type="radio" name="mode" value="reflected" checked>
+              <span>Отраженный</span>
+            </label>
+            <label>
+              <input type="radio" name="mode" value="transmitted">
+              <span>Проходящий</span>
+            </label>
+          </fieldset>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Радиус кривизны линзы R</span>
+              <output id="curvatureValue">1.00 м</output>
+            </span>
+            <input id="curvatureCm" type="range" min="20" max="500" step="5" value="100">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Радиус области наблюдения</span>
+              <output id="apertureValue">3.0 мм</output>
+            </span>
+            <input id="apertureMm" type="range" min="0.5" max="8" step="0.1" value="3">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Центр спектра</span>
+              <output id="wavelengthValue">550 нм</output>
+            </span>
+            <input id="wavelengthNm" type="range" min="380" max="780" step="1" value="550">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Ширина спектра FWHM</span>
+              <output id="bandwidthValue">0 нм</output>
+            </span>
+            <input id="bandwidthNm" type="range" min="0" max="160" step="1" value="0">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Начальный зазор t0</span>
+              <output id="gapValue">0 нм</output>
+            </span>
+            <input id="gapNm" type="range" min="0" max="900" step="5" value="0">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Показатель преломления пленки n</span>
+              <output id="refractiveValue">1.000</output>
+            </span>
+            <input id="refractiveIndex" type="range" min="1" max="1.7" step="0.005" value="1">
+          </label>
+
+          <label class="control">
+            <span class="label-row">
+              <span>Видность интерференции V</span>
+              <output id="visibilityValue">1.00</output>
+            </span>
+            <input id="visibility" type="range" min="0" max="1" step="0.01" value="1">
+          </label>
+        </form>
+
+        <dl class="readout">
+          <div>
+            <dt>Свет</dt>
+            <dd id="lightKind">монохроматический</dd>
+          </div>
+          <div>
+            <dt>Центр</dt>
+            <dd id="centerIntensity">I(0) = 0.000</dd>
+          </div>
+          <div>
+            <dt>Первое темное кольцо</dt>
+            <dd id="darkRing">0.742 мм</dd>
+          </div>
+          <div>
+            <dt>Длина когерентности</dt>
+            <dd id="coherenceLength">∞</dd>
+          </div>
+        </dl>
+      </aside>
+
+      <section class="stage" aria-label="Визуализация">
+        <div class="pattern-area">
+          <canvas id="patternCanvas" width="640" height="640" aria-label="Цветное распределение интенсивности"></canvas>
+          <div class="scale-bar" aria-hidden="true">
+            <span></span>
+            <b id="scaleLabel">1 мм</b>
+          </div>
+        </div>
+
+        <div class="plot-area">
+          <div class="plot-heading">
+            <h2>Интенсивность I(r)</h2>
+            <p id="plotCaption">Нормированная яркость вдоль радиуса</p>
+          </div>
+          <canvas id="profileCanvas" width="900" height="280" aria-label="График интенсивности по радиусу"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script src="src/physics.js"></script>
+    <script src="src/app.js"></script>
+  </body>
+</html>
