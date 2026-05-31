@@ -13,6 +13,8 @@ pnpm-debug.log*
 .tmp/
 tmp/
 
+.tex
+
 coverage/
 .nyc_output/
 
