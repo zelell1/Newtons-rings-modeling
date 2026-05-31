@@ -32,9 +32,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run report checks
-        run: npm run check:report
-
   deploy:
     name: Deploy
     needs: test

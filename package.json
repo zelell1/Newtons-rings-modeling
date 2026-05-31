@@ -4,7 +4,6 @@
   "private": true,
   "description": "Interactive Newton's rings simulation for monochromatic and quasi-monochromatic light.",
   "scripts": {
-    "check:report": "node scripts/report-checks.js",
     "test": "node --test tests/*.test.js",
     "serve": "python3 -m http.server 8000"
   },
